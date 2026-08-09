@@ -1,36 +1,47 @@
+from typing import Any
+
 import discord
 import gtts.lang
+from discord.channel import VoiceChannel
 from discord.ext import commands
-from dotenv import load_dotenv
+from discord.ext.commands.bot import Bot
+from discord.flags import Intents
+from discord.player import FFmpegPCMAudio
+from discord.voice_client import VoiceProtocol
 
-load_dotenv()
+from src.myavkabot.utils import tts
 
-intents = discord.Intents.default()
+intents: Intents = discord.Intents.default()
 intents.voice_states = True
 intents.message_content = True
 intents.guilds = True
 
-bot = commands.Bot(command_prefix="&", intents=intents)
+
+bot: Bot = commands.Bot(command_prefix="&", intents=intents)
+
+tts.TextToSpeech.tts_buffer()
 
 
 @bot.event
-async def on_ready():
+async def on_ready() -> None:
     await bot.tree.sync()
     print("✅")
 
 
 @bot.tree.command(name="join")
-async def join(interaction: discord.Interaction, voice: discord.VoiceChannel = None):
+async def join(
+    interaction: discord.Interaction, voice: discord.VoiceChannel | None = None
+) -> None:
 
     if voice is None:
-        if not interaction.user.voice:
+        if not interaction.user.id:
             await interaction.response.send_message(
                 "ты не в гс либо укажи его", ephemeral=True
             )
             return
-        voice = interaction.user.voice.channel
+        voice: VoiceChannel | None = interaction.user.voice.channel
 
-    channel = voice
+    channel: VoiceChannel | None = voice
 
     if not channel:
         await interaction.response.send_message("канал не найден", ephemeral=True)
@@ -50,13 +61,13 @@ async def join(interaction: discord.Interaction, voice: discord.VoiceChannel = N
 @bot.tree.command(name="say")
 async def say(
     interaction: discord.Interaction, sentence: str = "нормас", lang: str = "ru"
-):
+) -> None:
     if interaction.guild.voice_client:
-        supported_languages = gtts.lang.tts_langs()
+        supported_languages: dict[Any, Any] = gtts.lang.tts_langs()
 
-        voice_client = interaction.guild.voice_client
-        audio = tts.tts_buffer(sentence, lang=lang)
-        audio_source = discord.FFmpegPCMAudio(audio, pipe=True)
+        voice_client: VoiceProtocol = interaction.guild.voice_client
+        audio: Any = tts.tts_buffer(sentence, lang=lang)
+        audio_source: FFmpegPCMAudio = discord.FFmpegPCMAudio(audio, pipe=True)
 
         if voice_client.is_playing():
             voice_client.stop()

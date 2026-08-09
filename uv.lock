@@ -714,6 +714,7 @@ source = { editable = "." }
 dependencies = [
     { name = "discord" },
     { name = "gtts" },
+    { name = "utils" },
 ]
 
 [package.dev-dependencies]
@@ -730,6 +731,7 @@ dev = [
 requires-dist = [
     { name = "discord", extras = ["speed"], specifier = ">=2.3.2" },
     { name = "gtts", specifier = ">=2.5.4" },
+    { name = "utils", specifier = ">=1.0.2" },
 ]
 
 [package.metadata.requires-dev]
@@ -1017,6 +1019,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
 ]
+
+[[package]]
+name = "utils"
+version = "1.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/1f/c196d21c2df061923154aecf24cab049a114394956e90c9bfbfdd398e27a/utils-1.0.2.tar.gz", hash = "sha256:f4d5157e27e9d434006b5b52a1ec951a34e53e7ecaa145d43a153ec452eb5d9e", size = 13203, upload-time = "2024-01-06T07:11:25.75Z" }
 
 [[package]]
 name = "yarl"
