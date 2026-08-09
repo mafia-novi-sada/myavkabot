@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "charliermarsh.ruff",
+    "ms-python.mypy-type-checker",
+    "detachhead.basedpyright",
+    "DavidAnson.vscode-markdownlint",
+    "ms-python.python"
+  ]
+}
