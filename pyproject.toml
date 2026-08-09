@@ -6,7 +6,9 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "discord>=2.3.2",
+    "dishka>=1.10.1",
     "gtts>=2.5.4",
+    "structlog>=26.1.0",
     "utils>=1.0.2",
 ]
 
