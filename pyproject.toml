@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "discord[speed]>=2.3.2",
+    "gtts>=2.5.4",
+]
 
 [project.scripts]
 myavkabot = "myavkabot:main"
@@ -12,3 +15,13 @@ myavkabot = "myavkabot:main"
 [build-system]
 requires = ["uv_build>=0.12.2,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.39.9",
+    "mypy>=2.3.0",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.2",
+]
