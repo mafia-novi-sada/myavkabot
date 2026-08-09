@@ -6,6 +6,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Config(BaseSettings):
     BOT_TOKEN: str = Field(min_length=1)
+    BOT_OWNER_ID: int = Field(ge=1)
+    BOT_DESCRIPTION: str = Field(min_length=1)
 
     model_config: SettingsConfigDict = SettingsConfigDict(  # pyright: ignore[reportIncompatibleVariableOverride]
         env_file=".env",
