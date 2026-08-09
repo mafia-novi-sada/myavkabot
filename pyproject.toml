@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "discord[speed]>=2.3.2",
+    "discord>=2.3.2",
     "gtts>=2.5.4",
     "utils>=1.0.2",
 ]
