@@ -1,9 +1,8 @@
 import discord
 import gtts.lang
 from discord.ext import commands
-from dotenv import load_dotenv
 
-load_dotenv()
+from .config import Config, get_config
 
 intents = discord.Intents.default()
 intents.voice_states = True
@@ -13,6 +12,9 @@ intents.guilds = True
 bot = commands.Bot(command_prefix="&", intents=intents)
 
 
+config: Config = get_config()
+
+
 @bot.event
 async def on_ready():
     await bot.tree.sync()
@@ -20,7 +22,9 @@ async def on_ready():
 
 
 @bot.tree.command(name="join")
-async def join(interaction: discord.Interaction, voice: discord.VoiceChannel = None):
+async def join(
+    interaction: discord.Interaction, voice: discord.VoiceChannel | None = None
+):
 
     if voice is None:
         if not interaction.user.voice:
@@ -79,4 +83,4 @@ async def leave(interaction: discord.Interaction):
         await interaction.response.send_message("нет в канале", ephemeral=True)
 
 
-bot.run()
+bot.run(token=config.BOT_TOKEN)
