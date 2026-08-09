@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+  ],
+  "settings": {
+    "ruff.enable": true,
+    "ruff.lint.enable": true,
+    "python.analysis.typeCheckingMode": "off",
+    "python.languageServer": "None",
+  },
+}
