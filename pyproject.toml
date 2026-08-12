@@ -28,3 +28,167 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.16.2",
 ]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py313"
+
+exclude = [
+    "**/migrations/versions",
+    "**/__pycache__",
+    "**/.pytest_cache",
+    "**/.ruff_cache",
+    "**/.mypy_cache",
+    "**/node_modules",
+    "**/.*",
+    "**/.venv",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+
+select = [
+    # pycodestyle / pyflakes
+    "E",
+    "F",
+
+    # imports
+    "I",
+    "ICN",
+
+    # naming
+    "N",
+
+    # modern python
+    "UP",
+
+    # bug prevention
+    "B",
+    "A",
+    "C4",
+    "SIM",
+    "RET",
+    "PIE",
+    "RUF",
+
+    # async
+    "ASYNC",
+
+    # performance
+    "PERF",
+
+    # pathlib
+    "PTH",
+
+    # typing
+    "TC",
+
+    # string concatenation
+    "ISC",
+
+    # datetime mistakes
+    "DTZ",
+
+    # __slots__
+    "SLOT",
+
+    # logging
+    "G",
+]
+
+ignore = [
+    # handled by formatter
+    "E501",
+
+    # Any is sometimes unavoidable
+    "ANN401",
+
+    # FastAPI Depends(), Query(), etc.
+    "B008",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = [
+    "F401",
+]
+
+"**/tests/**" = [
+    "S101",
+    "ARG001",
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+split-on-trailing-comma = true
+
+[tool.ruff.lint.flake8-type-checking]
+strict = true
+
+[tool.mypy]
+python_version = "3.13"
+
+mypy_path = "."
+
+strict = true
+
+plugins = [
+    # "sqlalchemy.ext.mypy.plugin",
+]
+
+warn_unused_configs = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+
+strict_equality = true
+extra_checks = true
+
+disallow_untyped_defs = true
+disallow_untyped_decorators = true
+disallow_any_generics = true
+disallow_any_unimported = true
+disallow_subclassing_any = true
+disallow_incomplete_defs = true
+
+check_untyped_defs = true
+explicit_package_bases = true
+no_implicit_optional = true
+
+ignore_missing_imports = false
+
+exclude = [
+    "^app/migrations/versions/",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    # ex. "twilio.*", "redis.*", ...
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "-vv -ra --cov-report=html --cov-report=xml"
+testpaths = [
+    "tests",
+]
+pythonpath = ["."]
+xfail_strict = true
+filterwarnings = [
+    "error",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["."]
+
+[tool.coverage.report]
+skip_empty = true
+show_missing = true
