@@ -12,11 +12,13 @@ class MyavkaBot:
         if cls._instance is not None:
             raise ValueError("already initialized")
 
+        intents: Intents = Intents.default()
+        intents.voice_states = True
         cls._instance = Bot(
             command_prefix="",
             help_command=None,
             description=description,
-            intents=Intents.default(),
+            intents=intents,
             owner_id=owner_id,
         )
 
