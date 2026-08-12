@@ -28,10 +28,3 @@ class MyavkaBot:
             raise ValueError("bot is not initialized, run setup first")
 
         cls._instance.run(token=token)
-
-    @classmethod
-    def get_bot(cls: type[Self]) -> Bot:
-        if cls._instance is None:
-            raise ValueError("bot is not initialized, run setup first")
-
-        return cls._instance
